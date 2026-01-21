@@ -1,0 +1,5 @@
+flask>=2.0
+joblib
+numpy
+scikit-learn
+pydantic

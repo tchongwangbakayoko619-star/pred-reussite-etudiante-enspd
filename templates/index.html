@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prédiction</title>
+    <style>
+      body { font-family: Arial, sans-serif; max-width:700px; margin:40px auto; }
+      label { display:block; margin-top:10px }
+      input[type=number], input[type=text] { width:100%; padding:8px; }
+      button { margin-top:12px; padding:8px 12px }
+      pre { background:#f6f8fa; padding:12px }
+    </style>
+  </head>
+  <body>
+    <h1>Prédiction du modèle</h1>
+    <p>Remplissez les champs ci‑dessous et cliquez sur <strong>Prédire</strong>.</p>
+    <form id="predict-form">
+      <label>Pourcentage de présence (ex: 25 pour 25%)
+        <input type="number" step="any" id="presence_pct" required>
+      </label>
+
+      <label>Minutes d'étude par jour (ex: 120 pour 2h)
+        <input type="number" step="any" id="study_min" required>
+      </label>
+
+      <label>Niveau d'implication (1-5)
+        <input type="number" step="1" min="1" max="5" id="implication" required>
+      </label>
+
+      <label>Interaction (ordre numérique)
+        <input type="number" step="any" id="interaction_ord" required>
+      </label>
+
+      <label>Accès bibliotheque (ordre numérique)
+        <input type="number" step="any" id="acces_bibliotheque_ord" required>
+      </label>
+
+      <button type="submit">Prédire</button>
+    </form>
+
+    <h3>Résultat</h3>
+    <pre id="output">—</pre>
+
+    <script>
+      const form = document.getElementById('predict-form');
+      const out = document.getElementById('output');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        out.textContent = 'Envoi...';
+        const payload = {
+          features: {
+            presence_pct: parseFloat(document.getElementById('presence_pct').value),
+            study_min: parseFloat(document.getElementById('study_min').value),
+            implication: parseFloat(document.getElementById('implication').value),
+            interaction_ord: parseFloat(document.getElementById('interaction_ord').value),
+            acces_bibliotheque_ord: parseFloat(document.getElementById('acces_bibliotheque_ord').value)
+          }
+        };
+
+        try {
+          const resp = await fetch('/predict', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await resp.json();
+          out.textContent = JSON.stringify(data, null, 2);
+        } catch (err) {
+          out.textContent = 'Erreur: ' + err.toString();
+        }
+      });
+    </script>
+  </body>
+</html>

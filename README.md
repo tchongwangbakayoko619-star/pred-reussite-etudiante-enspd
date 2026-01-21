@@ -4,7 +4,10 @@ Optimisation de la gestion académique et prédiction de la réussite étudiante
 Ce projet combine rigueur scientifique et innovation pédagogique pour anticiper les risques d’échec et proposer des recommandations personnalisées.
 
 ---
-
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python&logoColor=white) 
+![Flask](https://img.shields.io/badge/Flask-Web%20Framework-black?logo=flask) 
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-From%20Scratch-orange?logo=googlecolab&logoColor=white) 
+![GitHub](https://img.shields.io/badge/GitHub-Repository-black?logo=github)
 ## 🚀 Objectifs du projet
 - Identifier les **facteurs clés** influençant la réussite (sociaux, académiques et comportementaux).  
 - Concevoir et implémenter des modèles de prédiction (*Régression Logistique* et *Arbre de Décision*).  
@@ -78,7 +81,7 @@ Le modèle est intégré dans une **application web Flask** :
 
 ## 👨‍🎓 Auteurs
 Projet réalisé par un **groupe d’étudiants ENSPD** en filière *Sciences des Données et Intelligence Artificielle*,  
-sous la supervision de **Mme …**.  
+sous la supervision de **Dr NOULAPEU Armielle**.  
 
 ---
 
